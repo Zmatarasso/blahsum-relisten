@@ -3,6 +3,13 @@ FROM node:24-alpine AS deps
 RUN corepack enable && corepack prepare pnpm@10 --activate
 WORKDIR /app
 
+# blahsum-relisten: pnpm's default hardlink/copy concurrency hits EAGAIN
+# on some Docker storage drivers (notably overlay-on-ZFS, which is what
+# TrueNAS Community Edition uses). Throttle and force copy.
+ENV npm_config_package_import_method=copy
+ENV npm_config_child_concurrency=1
+ENV UV_THREADPOOL_SIZE=2
+
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
