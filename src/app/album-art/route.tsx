@@ -127,7 +127,7 @@ export const GET = createZodRoute()
             fontSize: (size / 1024) * 36,
           }}
         >
-          Relisten.net
+          blahsum.live
         </div>
       </div>,
       {

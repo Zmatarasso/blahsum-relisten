@@ -1,7 +1,7 @@
 {
-  "name": "relisten-web",
+  "name": "blahsum-relisten-web",
   "version": "1.0.0",
-  "description": "",
+  "description": "blahsum.live frontend (fork of relisten-web)",
   "type": "module",
   "main": "server.js",
   "scripts": {

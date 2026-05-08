@@ -34,9 +34,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 
 export const metadata = {
-  metadataBase: new URL('https://relisten.net'),
+  metadataBase: new URL('https://relisten.blahsum.com'),
   title: {
-    template: '%s | Relisten',
-    default: 'Relisten', // a default is required when creating a template
+    template: '%s | blahsum.live',
+    default: 'blahsum.live — Every Blahsum show, ever.',
+  },
+  description: 'Every Blahsum show, ever. A live-recordings archive.',
+  openGraph: {
+    siteName: 'blahsum.live',
+    type: 'website',
   },
 };

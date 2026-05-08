@@ -76,21 +76,6 @@ export default async function NavBar() {
             </Link>
           </div>
           <div>
-            <Link className="nav-btn" href="/chat" prefetch={false}>
-              CHAT
-            </Link>
-          </div>
-          <div>
-            <Link className="nav-btn" href="/app" prefetch={false}>
-              APP
-            </Link>
-          </div>
-          <div>
-            <Link className="nav-btn" href="/sonos" prefetch={false}>
-              SONOS
-            </Link>
-          </div>
-          <div>
             <Link className="nav-btn" href="/about" prefetch={false}>
               ABOUT
             </Link>

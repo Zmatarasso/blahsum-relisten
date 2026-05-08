@@ -1,10 +1,9 @@
 import YearsColumn from '@/components/YearsColumn';
+import { DEFAULT_ARTIST_SLUG } from '@/lib/defaultArtist';
 import { isMobile } from '@/lib/isMobile';
 
 export default async function YearsArtistSlot() {
   if (await isMobile()) return null;
 
-  const artistSlug = 'grateful-dead';
-
-  return <YearsColumn artistSlug={artistSlug} />;
+  return <YearsColumn artistSlug={DEFAULT_ARTIST_SLUG} />;
 }
