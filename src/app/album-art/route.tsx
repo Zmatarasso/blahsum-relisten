@@ -56,18 +56,12 @@ export const GET = createZodRoute()
     const [artists, show, fontReg, fontBold, fontMegaBold] = await Promise.all([
       RelistenAPI.fetchArtists(),
       RelistenAPI.fetchShowByUUID(context.query.showUuid),
-      fetch(
-        new URL('https://cdn.jsdelivr.net/fontsource/fonts/roboto@latest/latin-400-normal.ttf'),
-        { next: { revalidate: 60 * 60 * 24 * 30 } } // Cache for 30 days
-      ).then((res) => res.arrayBuffer()),
-      fetch(
-        new URL('https://cdn.jsdelivr.net/fontsource/fonts/roboto@latest/latin-700-normal.ttf'),
-        { next: { revalidate: 60 * 60 * 24 * 30 } } // Cache for 30 days
-      ).then((res) => res.arrayBuffer()),
-      fetch(
-        new URL('https://cdn.jsdelivr.net/fontsource/fonts/roboto@latest/latin-900-normal.ttf'),
-        { next: { revalidate: 60 * 60 * 24 * 30 } } // Cache for 30 days
-      ).then((res) => res.arrayBuffer()),
+      // blahsum-relisten: fonts vendored (no runtime egress to a CDN)
+      fetch(new URL('./roboto-latin-400-normal.ttf', import.meta.url)).then((res) => res.arrayBuffer()),
+      // blahsum-relisten: fonts vendored (no runtime egress to a CDN)
+      fetch(new URL('./roboto-latin-700-normal.ttf', import.meta.url)).then((res) => res.arrayBuffer()),
+      // blahsum-relisten: fonts vendored (no runtime egress to a CDN)
+      fetch(new URL('./roboto-latin-900-normal.ttf', import.meta.url)).then((res) => res.arrayBuffer()),
     ]);
 
     if (!show || !show.sources?.length) return notFound();

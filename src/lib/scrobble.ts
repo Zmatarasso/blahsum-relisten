@@ -1,7 +1,4 @@
-import { API_DOMAIN } from './constants';
-
-export function scrobblePlay(uuid: string): void {
-  fetch(`${API_DOMAIN}/api/v2/live/play?track_uuid=${uuid}&app_type=web`, {
-    method: 'post',
-  }).catch(() => {});
-}
+// blahsum-relisten: play scrobbling disabled. Upstream posted every play to
+// api.relisten.net (leaks listening data to a third party) and the self-hosted
+// API endpoint is a public DB write. The API is not exposed publicly at all.
+export function scrobblePlay(_uuid: string): void {}

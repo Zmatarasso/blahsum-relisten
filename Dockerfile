@@ -1,5 +1,5 @@
 # Stage 1: Install dependencies
-FROM node:24-alpine AS deps
+FROM node:24.22.3-alpine AS deps
 RUN corepack enable && corepack prepare pnpm@10 --activate
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # Stage 2: Build the application
-FROM node:24-alpine AS builder
+FROM node:24.22.3-alpine AS builder
 RUN corepack enable && corepack prepare pnpm@10 --activate
 WORKDIR /app
 
@@ -25,7 +25,7 @@ ENV NODE_ENV=production
 RUN pnpm run build
 
 # Stage 3: Production runner
-FROM node:24-alpine AS runner
+FROM node:24.22.3-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -44,6 +44,7 @@ EXPOSE 3000
 
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
-ENV RELISTEN_API_URL="http://relistenapi-srv.default:3823"
+ENV RELISTEN_API_URL="http://api:3823"
+ENV NEXT_TELEMETRY_DISABLED=1
 
 CMD ["node", "server.js"]
